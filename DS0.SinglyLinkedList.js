@@ -116,6 +116,7 @@ class SinglyLinkedList {
 	}
 }
 
+export { ListNodeSingle, SinglyLinkedList }
 
 /** Some test code */
 // let list = new SinglyLinkedList();
