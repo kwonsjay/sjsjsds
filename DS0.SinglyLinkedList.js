@@ -118,19 +118,19 @@ class SinglyLinkedList {
 
 
 /** Some test code */
-let list = new SinglyLinkedList();
-let special;
+// let list = new SinglyLinkedList();
+// let special;
 
-for (let i = 0; i < 10; i ++) {
-	let node = new ListNodeSingle(i);
-	if (i % 2 === 0) {
-		list.push(node);
-	} else {
-		list.unshift(node);
-	}
-	if (i === 3) special = node;
-}
+// for (let i = 0; i < 10; i ++) {
+// 	let node = new ListNodeSingle(i);
+// 	if (i % 2 === 0) {
+// 		list.push(node);
+// 	} else {
+// 		list.unshift(node);
+// 	}
+// 	if (i === 3) special = node;
+// }
 
-console.log(list.toString());
-list.delete(special);
-console.log(list.toString());
+// console.log(list.toString());
+// list.delete(special);
+// console.log(list.toString());
