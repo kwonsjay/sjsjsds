@@ -39,6 +39,15 @@ class SinglyLinkedList {
 	}
 
 	/**
+	 * Adds a value as a new node to the tail of the linked list
+	 * @param {*}			value	the value to be added to the tail of the list
+	 */
+	pushValue(value) {
+		let node = new ListNodeSingle(value);
+		this.push(node);
+	}
+
+	/**
 	 * Adds a node to the head of the linked list
 	 * @param {ListNodeSingle}	node	the node to be added to the head of the list
 	 */
@@ -51,6 +60,15 @@ class SinglyLinkedList {
 			this.tail = node;
 		}
 		this.size ++;
+	}
+
+	/**
+	 * Adds a value as a new node to the head of the linked list
+	 * @param {*}			value	the value to be added to the head of the list
+	 */
+	unshiftValue(value) {
+		let node = new ListNodeSingle(value);
+		this.unshift(node);
 	}
 
 	/**
@@ -71,9 +89,43 @@ class SinglyLinkedList {
 	}
 
 	/**
+	 * Searches for a value in the list, and returns a boolean
+	 * @param  {*}			value	the value to search for
+	 * @return {Boolean}			true if found, else false
+	 */
+	hasValue(value) {
+		let pointer = this.head;
+		let found = false;
+		while (pointer && !found) {			// Loop through to exhaustion, or until match found
+			if (pointer.value === value) {
+				found = true;
+			}
+			pointer = pointer.next;
+		}
+		return found;
+	}
+
+	/**
+	 * Searches for a value in the list, and returns the first node with that value
+	 * @param  {*}			value	the value to search for
+	 * @return {ListNodeSingle}		node with the value of interest, or null
+	 */
+	findByValue(value) {
+		let pointer = this.head;
+		let found = null;
+		while (pointer && !found) {			// Loop through to exhaustion, or until match found
+			if (pointer.value === value) {
+				found = pointer;
+			}
+			pointer = pointer.next;
+		}
+		return found;
+	}
+
+	/**
 	* Deletes a node from the linked list, if the list has that node
 	* This delete method does not assume that the given node is actually a member of this linked list
-	* @param {ListNodeSingle}	node
+	* @param {ListNodeSingle}	node	the node to delete
 	*/
 	delete(node) {
 		if (this.size === 0) return;			// If the linked list is empty, return
@@ -88,7 +140,7 @@ class SinglyLinkedList {
 				node.next = null;
 			} else if (node === this.tail) {	// Adjust tail pointer if deleting the tail node
 				let pointer = this.head;
-				while (pointer.next.next) {	// A loop is required in this particular implementation of a linked list (tail referenced)
+				while (pointer.next.next) {	// Loop to the node before tail
 					pointer = pointer.next;
 				}
 				pointer.next = null;
@@ -100,6 +152,17 @@ class SinglyLinkedList {
 			}
 		}
 		this.size --;					// If we get to this point, decrement list size assuming successful deletion
+	}
+
+	/**
+	* Deletes the first occurrence of given value from the linked list, if the list has that value
+	* @param {*}			value	the value to delete
+	*/
+	deleteValue(value) {
+		if (this.size === 0) return;
+		let node = this.findByValue(value);
+		if (!node) return;
+		this.delete(node);
 	}
 
 	toString() {
@@ -135,3 +198,10 @@ export { ListNodeSingle, SinglyLinkedList }
 // console.log(list.toString());
 // list.delete(special);
 // console.log(list.toString());
+// list.deleteValue(9);
+// console.log(list.toString());
+// list.unshiftValue(10);
+// console.log(list.toString());
+// list.pushValue(11);
+// console.log(list.toString());
+// console.log(list.size);
