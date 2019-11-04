@@ -34,7 +34,7 @@ export default class Queue {
 
 	/**
 	 * Returns the length of the queue
-	 * @return {Integer}	length of the queue
+	 * @return {Number}	length of the queue
 	 */
 	length() {
 		return this.data.size;
